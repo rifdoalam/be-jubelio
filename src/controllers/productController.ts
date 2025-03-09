@@ -54,7 +54,9 @@ const createProduct = async (req: FastifyRequest, reply: FastifyReply) => {
     if (!title || !sku || !price || !image)
       return reply.status(400).send({ message: 'Title, SKU, Image, and Price are required' });
     const existingProduct = await productService.showProduct(sku);
-    if (existingProduct) return reply.status(400).send({ message: 'Product already exists' });
+    if (existingProduct) {
+      reply.status(400).send({ message: 'Product already exists' });
+    }
 
     const data = await productService.createProduct({
       title,

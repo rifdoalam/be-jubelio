@@ -1,11 +1,17 @@
 import Fastify from 'fastify';
 import dotenv from 'dotenv';
+import cors from '@fastify/cors';
 
 dotenv.config();
 import productRoutes from './routes/productRoutes';
 import adjusmentRoutes from './routes/adjusmentRoutes';
 import db from './config/db';
 const fastify = Fastify({ logger: true });
+
+fastify.register(cors, {
+  origin: '*', // Atur sesuai kebutuhan, misalnya ['http://localhost:3000']
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+});
 fastify.get('/', async (request, reply) => {
   reply.status(200).send({ message: 'Hello developer, this is ecommerce api' });
 });

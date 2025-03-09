@@ -16,6 +16,9 @@ const productQueries = {
         adjustments a ON p.sku = a.sku
     GROUP BY 
         p.id, p.title, p.sku, p.image, p.price
+    ORDER BY 
+        p.id ASC
+
     LIMIT $1 OFFSET $2 
     `,
   getProductsCount: `
