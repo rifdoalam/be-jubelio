@@ -6,7 +6,7 @@ const getAllProducts = async (page: number, limit: number) => {
   return await db.any(productQueries.getProducts, [limit, (page - 1) * limit]);
 };
 const countProducts = async () => {
-  return await db.one(productQueries.countProduct);
+  return await db.oneOrNone(productQueries.countProduct);
 };
 const createProduct = async (product: Product) => {
   return db.one(productQueries.createProduct, [
@@ -18,7 +18,7 @@ const createProduct = async (product: Product) => {
   ]);
 };
 const updateProduct = async (product: Product) => {
-  return await db.one(productQueries.updateProduct, [
+  return await db.oneOrNone(productQueries.updateProduct, [
     product.title,
     product.price,
     product.description,
@@ -28,7 +28,8 @@ const updateProduct = async (product: Product) => {
 };
 
 const getStockBySku = async (sku: string) => {
-  return await db.one(productQueries.getStockBySku, [sku]);
+  const result = await db.oneOrNone<{ stock: number }>(productQueries.getStockBySku, [sku]);
+  return result;
 };
 
 const showProduct = async (sku: string) => {
@@ -36,7 +37,7 @@ const showProduct = async (sku: string) => {
 };
 
 const deleteProduct = async (sku: string) => {
-  return db.any(productQueries.deleteProduct, [sku]);
+  return db.oneOrNone(productQueries.deleteProduct, [sku]);
 };
 
 export default {

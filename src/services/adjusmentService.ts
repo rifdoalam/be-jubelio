@@ -8,7 +8,7 @@ const createData = async (adjustment: Adjustment) => {
   return await db.one(adjustmentQueries.createData, [adjustment.sku, adjustment.qty]);
 };
 const updateData = async (adjustment: Adjustment) => {
-  return await db.one(adjustmentQueries.updateData, [adjustment.id, adjustment.qty]);
+  return await db.oneOrNone(adjustmentQueries.updateData, [adjustment.id, adjustment.qty]);
 };
 const showData = async (sku: string) => {
   return await db.any(adjustmentQueries.showData, [sku]);

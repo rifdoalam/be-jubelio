@@ -18,7 +18,6 @@ const productQueries = {
         p.id, p.title, p.sku, p.image, p.price
     ORDER BY 
         p.id ASC
-
     LIMIT $1 OFFSET $2 
     `,
   getProductsCount: `

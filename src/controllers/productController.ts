@@ -87,6 +87,7 @@ const deleteProduct = async (req: FastifyRequest, reply: FastifyReply) => {
   try {
     const existingProduct = await productService.showProduct(sku);
     if (!existingProduct) return reply.status(401).send({ message: `${sku} does not exist` });
+
     await productService.deleteProduct(sku);
     reply.status(200).send({ message: 'Data delete successfully ' });
   } catch (error) {
