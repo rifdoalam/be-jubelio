@@ -1,10 +1,10 @@
-E-Commerce Web App
-
+<h3>E-Commerce Web App</h3>
+<p>
 📌 Overview
-A simple E-Commerce Web Application built using Fastify for the backend The backend integrates with DummyJSON API to import products and manage them in a PostgreSQL database. Users can also manage product stock through adjustment transactions.
+A simple E-Commerce Web Application built using Fastify for the backend The backend integrates with DummyJSON API to import products and manage them in a PostgreSQL database. Users can also manage product stock through adjustment transactions.</p>
 
-Backend
-Fastify (High-performance Node.js API framework)
+<p>Backend</p>
+<li>Fastify (High-performance Node.js API framework)</li>
 Pg-Promise (Raw SQL queries for PostgreSQL)
 TypeScript (For type safety)
 
