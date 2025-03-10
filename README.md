@@ -54,3 +54,8 @@ npm run dev</p>
 <li>The project uses raw SQL queries instead of an ORM.</li>
 <li>API is fully documented with proper request/response structure.</li>
 <li>postman in the form of a.json file</li>
+
+<p>For Testing With Jest</p>
+<li>run npm run db:rollback</li>
+<li>run npm run db:migrate</li>
+<li>run npm test</li>

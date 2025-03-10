@@ -33,9 +33,9 @@ const createData = async (
     if (!existProduct) return reply.status(404).send({ message: `${sku} not found ` });
     const currentStock = await productService.getStockBySku(sku);
     const newStock = Number(currentStock?.stock) + Number(qty);
-    if (newStock <= 0) return reply.status(404).send({ message: `${sku} Insufficient stock  ` });
+    if (newStock <= 0) return reply.status(400).send({ message: `${sku} Insufficient stock  ` });
     const data = await adjusmentService.createData({ qty: qty, sku: sku, amount: 0 });
-    reply.status(200).send({ message: 'Product created successfully', data: data });
+    reply.status(200).send({ message: 'Data created successfully', data: data });
   } catch (error) {
     console.log(error);
     reply.status(500).send({ error });
@@ -50,12 +50,10 @@ const updateData = async (
   try {
     const existAdjusment = await adjusmentService.getAdjustmenById(id);
     if (!existAdjusment) return reply.status(404).send({ message: 'Adjusment not found' });
-
     const currentStock = await productService.getStockBySku(existAdjusment.sku);
-
     const newStock = Number(currentStock?.stock) - Number(existAdjusment.qty) + Number(qty);
     if (newStock <= 0)
-      return reply.status(404).send({ message: `${existAdjusment.sku} Insufficient stock  ` });
+      return reply.status(400).send({ message: `${existAdjusment.sku} Insufficient stock` });
     const updatedData = await adjusmentService.updateData({
       id: existAdjusment.id,
       sku: existAdjusment.sku,
