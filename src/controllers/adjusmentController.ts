@@ -3,17 +3,19 @@ import adjusmentService from '../services/adjusmentService';
 import { Adjustment } from '../types/adjusmentType';
 import productService from '../services/productService';
 const getData = async (req: FastifyRequest, reply: FastifyReply) => {
-  const page = parseInt((req.query as { page: string }).page) || 0;
-  const limit = parseInt((req.query as { limit: string }).limit) || 0;
+  const page = parseInt((req.query as { page: string }).page) || 1;
+  const limit = parseInt((req.query as { limit: string }).limit) || 10;
   try {
     const data = await adjusmentService.getAllData(page, limit);
-    console.log(data);
+    const countData = await adjusmentService.countData();
     reply.status(200).send({
       message: 'Data successfully retrieved ',
       data: data,
       pagination: {
         page: page,
         limit: limit,
+        totalData: Number(countData.count),
+        totalPages: Math.ceil(Number(countData.count) / limit),
       },
     });
   } catch (error) {
@@ -30,7 +32,6 @@ const createData = async (
     const existProduct = await productService.showProduct(sku);
     if (!existProduct) return reply.status(404).send({ message: `${sku} not found ` });
     const currentStock = await productService.getStockBySku(sku);
-
     const newStock = Number(currentStock?.stock) + Number(qty);
     if (newStock <= 0) return reply.status(404).send({ message: `${sku} Insufficient stock  ` });
     const data = await adjusmentService.createData({ qty: qty, sku: sku, amount: 0 });
@@ -101,8 +102,9 @@ const deleteData = async (req: FastifyRequest<{ Params: { id: number } }>, reply
   try {
     const existingData = await adjusmentService.getAdjustmenById(id);
     if (!existingData) return reply.status(404).send({ message: 'Data not found' });
+
     const data = await adjusmentService.deleteData(id);
-    reply.status(200).send({ message: 'Data successfully', data: data });
+    reply.status(200).send({ message: 'Data deleted successfully ', data: data });
   } catch (error) {
     console.log(error);
     reply.status(500).send({ error });

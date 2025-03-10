@@ -66,5 +66,7 @@ const adjustmentQueries = {
   deleteData: `
      DELETE FROM adjustments WHERE id = $1 RETURNING *
     `,
+  coundData: `
+    SELECT COUNT(*) FROM adjustments`,
 };
 export default adjustmentQueries;

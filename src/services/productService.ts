@@ -3,13 +3,13 @@ import { Product } from '../types/productType';
 import productQueries from '../db/queries/productQueries';
 
 const getAllProducts = async (page: number, limit: number) => {
-  return await db.any(productQueries.getProducts, [limit, (page - 1) * limit]);
+  return await db.any<Product>(productQueries.getProducts, [limit, (page - 1) * limit]);
 };
 const countProducts = async () => {
   return await db.oneOrNone(productQueries.countProduct);
 };
 const createProduct = async (product: Product) => {
-  return db.one(productQueries.createProduct, [
+  return db.one<Product>(productQueries.createProduct, [
     product.title,
     product.sku,
     product.price,
@@ -18,7 +18,7 @@ const createProduct = async (product: Product) => {
   ]);
 };
 const updateProduct = async (product: Product) => {
-  return await db.oneOrNone(productQueries.updateProduct, [
+  return await db.oneOrNone<Product>(productQueries.updateProduct, [
     product.title,
     product.price,
     product.description,
@@ -33,11 +33,11 @@ const getStockBySku = async (sku: string) => {
 };
 
 const showProduct = async (sku: string) => {
-  return db.oneOrNone(productQueries.showProduct, [sku]);
+  return db.oneOrNone<Product>(productQueries.showProduct, [sku]);
 };
 
 const deleteProduct = async (sku: string) => {
-  return db.oneOrNone(productQueries.deleteProduct, [sku]);
+  return db.oneOrNone<Product>(productQueries.deleteProduct, [sku]);
 };
 
 export default {
