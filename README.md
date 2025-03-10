@@ -43,10 +43,9 @@ A simple E-Commerce Web Application built using Fastify for the backend The back
 <li>DB_PASSWORD=</li>
 
 <p>5️⃣ Run Database Migrations</p>
-<p>to migrate
-npm run db:migrate
-to db down
-npm run db:rollback</p>
+<li>to migrate: npm run db:migrate</li>
+<li>to db down npm run db:rollback</li>
+
 <p>6️⃣ Start the Backend Server
 npm run dev</p>
 
