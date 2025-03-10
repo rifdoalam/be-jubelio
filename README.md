@@ -5,54 +5,53 @@ A simple E-Commerce Web Application built using Fastify for the backend The back
 
 <p>Backend</p>
 <li>Fastify (High-performance Node.js API framework)</li>
-Pg-Promise (Raw SQL queries for PostgreSQL)
-TypeScript (For type safety)
+<li>Pg-Promise (Raw SQL queries for PostgreSQL)</li>
+<li>TypeScript (For type safety)</li>
 
-Database
-PostgreSQL (Relational Database)
-Migration scripts (Using raw SQL queries)
+<p>Database</p>
+<li>PostgreSQL (Relational Database)</li>
+<li>Migration scripts (Using raw SQL queries)</li>
 
-Backend API
+<p>Backend API</p>
+<p>✅ Products</p>
+<li>Import products from DummyJSON API</li>
+<li>Get paginated product list</li>
+<li>View product details</li>
+<li>Create, update, and delete products</li>
+<li>Prevent duplicate SKUs</li>
 
-✅ Products
-Import products from DummyJSON API
-Get paginated product list
-View product details
-Create, update, and delete products
-Prevent duplicate SKUs
+<p>✅ Adjustment Transactions</p>
+<li>Create & manage stock adjustments</li>
+<li>Prevent negative stock</li>
+<li>Calculate total transaction amount based on product price</li>
 
-✅ Adjustment Transactions
-Create & manage stock adjustments
-Prevent negative stock
-Calculate total transaction amount based on product price
+<p>🛠️ Setup Instructions (Run Locally)</p>
 
-🛠️ Setup Instructions (Run Locally)
-1️⃣ Clone Repository
-git clone git@github.com:rifdoalam/be-jubelio.git
-cd be-jubelio
+<p>1️⃣ Clone Repository</p>
+<li>git clone git@github.com:rifdoalam/be-jubelio.git</li>
+<li>cd be-jubelio</li>
 
-2️⃣ Install Dependencies
-npm install
+<p>2️⃣ Install Dependencies</p>
+<li>npm install</li>
 
-3️⃣ Configure Environment Variables
-PORT=
-DB_HOST=
-DB_PORT=
-DB_NAME=
-DB_USER=
-DB_PASSWORD=
+<p>3️⃣ Configure Environment Variables</p>
+<li>PORT=</li>
+<li>DB_HOST=</li>
+<li>DB_PORT=</li>
+<li>DB_NAME=</li>
+<li>DB_USER=</li>
+<li>DB_PASSWORD=</li>
 
-5️⃣ Run Database Migrations
-to migrate
+<p>5️⃣ Run Database Migrations</p>
+<p>to migrate
 npm run db:migrate
 to db down
-npm run db:rollback
+npm run db:rollback</p>
+<p>6️⃣ Start the Backend Server
+npm run dev</p>
 
-Start the Backend Server
-npm run dev
-
-📌 Notes
-Stock is not stored in the database, but calculated dynamically from adjustment transactions.
-The project uses raw SQL queries instead of an ORM.
-API is fully documented with proper request/response structure.
-postman in the form of a.json file
+<p>📌 Notes</p>
+<li>Stock is not stored in the database, but calculated dynamically from adjustment transactions.</li>
+<li>The project uses raw SQL queries instead of an ORM.</li>
+<li>API is fully documented with proper request/response structure.</li>
+<li>postman in the form of a.json file</li>
